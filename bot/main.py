@@ -144,7 +144,7 @@ async def on_message(message):
                             if emo1.me:
                                 count_total += 1
                                 for emo2 in emoji_list[1:]:
-                                    # # Only care about "correct" emoji sent by bot for correct count
+                                    # Only care about "correct" emoji sent by bot for correct count
                                     if emo2[-19:-1] == str(emo1.emoji.id):
                                         count_correct += 1
                                         break
