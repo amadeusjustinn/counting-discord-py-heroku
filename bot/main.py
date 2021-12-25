@@ -21,8 +21,8 @@ def evaluate(exp, curr_count):
     =======
     [
 
-        - number: Evaluation result of expression (if valid), 0 otherwise,
-        - boolean value: whether the expression is current_count + 1
+        - number: Evaluation result of expression (if valid), -infinity otherwise,
+        - boolean value: whether the expression evaluates to current_count + 1
 
     ]
     """
