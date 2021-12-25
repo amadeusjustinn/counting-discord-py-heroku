@@ -1,7 +1,6 @@
 import json
 import os
 import discord
-from dotenv import load_dotenv
 
 
 def evaluate(exp, curr_count):
@@ -218,5 +217,4 @@ async def on_message(message):
 
 
 # Read secret token
-load_dotenv()
-client.run(os.getenv('TOKEN'))
+client.run(os.getenv('DISCORD_TOKEN'))
