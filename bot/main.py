@@ -143,7 +143,7 @@ async def on_message(message):
                     # If expression starts with forbidden character
                     # If message is written by user in question
                     evaluateable = evaluate(expression, data["curr_count"])[0] != float("-inf")
-                    starts_with_fb = any(msg.startswith(fb_char) for fb_char in char_arr)
+                    starts_with_fb = any(msg.content.startswith(fb_char) for fb_char in char_arr)
                     author_verif = str(msg.author.id) == u_id
 
                     # Message does not start with forbidden character
@@ -187,7 +187,7 @@ async def on_message(message):
             expression = message.content.split()[0]
             
             # If expression starts with forbidden character
-            starts_with_fb = any(message.startswith(fb_char) for fb_char in char_arr)
+            starts_with_fb = any(message.content.startswith(fb_char) for fb_char in char_arr)
 
             # Disregard if there are letters
             if (not any(char.isalpha() for char in expression)) and (not starts_with_fb) and ("@" not in expression):
