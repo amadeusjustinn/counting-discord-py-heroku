@@ -114,7 +114,7 @@ async def on_message(message):
                       "<a:daysgobyheart:923876397464829992>"]
         
         # List of forbidden starting characters
-        char_arr = [".", ",", "!", "@", "#", "$", "%", "^", "&", ":", ";", "<", ">", "/"]
+        char_arr = [".", ",", "!", "@", "#", "$", "%", "^", "&", ":", ";", "<", ">", "/", "?", "{", "}", "[", "]", "\"", "'", "|", "/"]
 
         # See stats using tailwhip!user <@user>; user parameter is optional
         if message.content.startswith('tailwhip!user'):
