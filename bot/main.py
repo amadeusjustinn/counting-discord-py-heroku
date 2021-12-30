@@ -133,7 +133,7 @@ async def on_message(message):
             count_correct = 0
 
             # Read entire channel history
-            channel_hist = await message.channel.history().flatten()
+            channel_hist = await message.channel.history(limit=999999).flatten()
             for msg in channel_hist:
                 split_arr = msg.content.split()
                 if len(split_arr) != 0:
@@ -170,14 +170,13 @@ async def on_message(message):
             if count_total == 0:
                 ca_str_0 = f"• 𝗖𝗼𝘂𝗻𝘁𝗶𝗻𝗴 𝗮𝗰𝗰𝘂𝗿𝗮𝗰𝘆 𝗼𝗳 <@{u_id}>: 𝗡/𝗔"
                 stats_arr = [ct_str, cc_str, ca_str_0, sc_str]
-                embed_m.add_field(
-                    name="<:mitlauren:923878091389034518> 𝗖𝗼𝘂𝗻𝘁𝗶𝗻𝗴 𝘀𝘁𝗮𝘁𝘀",
-                    value="\n".join(stats_arr))
+                
             else:
                 ca_str = f"• 𝗖𝗼𝘂𝗻𝘁𝗶𝗻𝗴 𝗮𝗰𝗰𝘂𝗿𝗮𝗰𝘆 𝗼𝗳 <@{u_id}>: {round(count_correct / count_total * 100, 5)}%"
                 stats_arr = [ct_str, cc_str, ca_str]
-                embed_m.add_field(
-                    name="<:mitlauren:923878091389034518> 𝗖𝗼𝘂𝗻𝘁𝗶𝗻𝗴 𝘀𝘁𝗮𝘁𝘀",
+                
+            embed_m.add_field(
+                    name="<:eve:925331465649131540> 𝗖𝗼𝘂𝗻𝘁𝗶𝗻𝗴 𝘀𝘁𝗮𝘁𝘀",
                     value="\n".join(stats_arr))
 
             await message.channel.send(embed=embed_m)
