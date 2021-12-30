@@ -133,7 +133,7 @@ async def on_message(message):
             count_correct = 0
 
             # Read entire channel history
-            channel_hist = await message.channel.history(limit=999999).flatten()
+            channel_hist = await message.channel.history(limit=float("inf")).flatten()
             for msg in channel_hist:
                 split_arr = msg.content.split()
                 if len(split_arr) != 0:
@@ -189,7 +189,7 @@ async def on_message(message):
             starts_with_fb = any(message.content.startswith(fb_char) for fb_char in char_arr)
 
             # Disregard if there are letters
-            if (not any(char.isalpha() for char in expression)) and (not starts_with_fb) and ("@" not in expression):
+            if (not any(char.isalpha() for char in expression)) and (not starts_with_fb) and ("@" not in expression) and ("?" not in expression):
                 # Check using evaluate and check for user repeat counting
                 result = evaluate(expression, data["curr_count"])
 
