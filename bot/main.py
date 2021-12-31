@@ -106,12 +106,30 @@ async def on_message(message):
             await message.channel.send(embed=embed_m)
 
         # List of possible reactions
-        emoji_list = ["<a:tidesheart:923876187338592306>",
-                      "<a:untourablealbumheart:923876065670234164>",
-                      "<a:mitsparkles:924101093980528650>",
-                      "<a:onclejazzheart:923876017251160094>"
-                      "<a:youdeservethisheart:923876695516282931>",
-                      "<a:daysgobyheart:923876397464829992>"]
+        emoji_list = ["<a:tidesheart:923876187338592306>",              # 0, incorrect
+                      "<a:untourablealbumheart:923876065670234164>",    # 1, correct
+                      "<a:mitsparkles:924101093980528650>",             # 2, 690
+                      "<a:onclejazzheart:923876017251160094>"           # 3, 100
+                      "<a:youdeservethisheart:923876695516282931>",     # 4, 200
+                      "<a:daysgobyheart:923876397464829992>",           # 5, 420
+                      "<a:mitfrog:924101595329888287>",                 # 6, 300
+                      "<:mituwu:924101386071851008>",                   # 7, 400
+                      "<:mitlogo:923878289427279892>",                  # 8, 500
+                      "<:mitdaisy:923878289410506802>",                 # 9, 600
+                      "<:emmawaiting:924511130838245446>",              # 10, 700
+                      "<:blushyhearts:923878290387771402>",             # 11, 800
+                      "<a:ashestoashes:925332671461228624>",            # 12, 900
+                      "<a:Ausar:925986282830725170>",                   # 13, 1000
+                      "<:onclejazz:923877566819991563>",                # 14, 2000
+                      "<:mitnumb:923877630506328085>",                  # 15, 3000
+                      "<:mitsunglasses:923877630846066708>",            # 16, 4000
+                      "<:mitqt:923878289033019392>",                    # 17, 5000
+                      "<a:pulsingheart:923890933391564810>",            # 18, 6000
+                      "<a:mithug:923878945651298304>",                  # 19, 7000
+                      "<:mitwhistle:923878289083359264>",               # 20, 8000
+                      "<:mitsmile:923878289423102002>",                 # 21, 9000
+                      "<a:prideheart:923877371231207484>"               # 22, 10 000
+                      ]
         
         # List of forbidden starting characters
         char_arr = [".", ",", "!", "@", "#", "$", "%", "^", "&", "*", ":", ";", "<", ">", "/", "?", "{", "}", "[", "]", "\"", "'", "|", "/"]
@@ -193,18 +211,52 @@ async def on_message(message):
                 # Check using evaluate and check for user repeat counting
                 result = evaluate(expression, data["curr_count"])
 
-                if result[1] and data["last_user"] != message.author.id:
+                if result[1]:
                     emoji = emoji_list[1]
-                    data["last_user"] = message.author.id
                     data["curr_count"] = result[0]
-                    if data["curr_count"] == 69:
+                    if data["curr_count"] == 690:
                         emoji = emoji_list[2]
                     if data["curr_count"] == 100:
                         emoji = emoji_list[3]
                     elif data["curr_count"] == 200:
                         emoji = emoji_list[4]
+                    elif data["curr_count"] == 300:
+                        emoji = emoji_list[6]
+                    elif data["curr_count"] == 400:
+                        emoji = emoji_list[7]
                     elif data["curr_count"] == 420:
                         emoji = emoji_list[5]
+                    elif data["curr_count"] == 500:
+                        emoji = emoji_list[8]
+                    elif data["curr_count"] == 600:
+                        emoji = emoji_list[9]
+                    elif data["curr_count"] == 700:
+                        emoji = emoji_list[10]
+                    elif data["curr_count"] == 800:
+                        emoji = emoji_list[11]
+                    elif data["curr_count"] == 900:
+                        emoji = emoji_list[12]
+                    elif data["curr_count"] == 1000:
+                        emoji = emoji_list[13]
+                    elif data["curr_count"] == 2000:
+                        emoji = emoji_list[14]
+                    elif data["curr_count"] == 3000:
+                        emoji = emoji_list[15]
+                    elif data["curr_count"] == 4000:
+                        emoji = emoji_list[16]
+                    elif data["curr_count"] == 5000:
+                        emoji = emoji_list[17]
+                    elif data["curr_count"] == 6000:
+                        emoji = emoji_list[18]
+                    elif data["curr_count"] == 7000:
+                        emoji = emoji_list[19]
+                    elif data["curr_count"] == 8000:
+                        emoji = emoji_list[20]
+                    elif data["curr_count"] == 9000:
+                        emoji = emoji_list[21]
+                    elif data["curr_count"] == 10000:
+                        emoji = emoji_list[22]
+                        
                     await message.add_reaction(emoji)
 
                 else:
@@ -218,7 +270,7 @@ async def on_message(message):
                     embed_m = discord.Embed()
                     embed_m.add_field(
                         name="<a:mitexclaimed:924105720293646367> 𝗪𝗿𝗼𝗻𝗴 𝗰𝗼𝘂𝗻𝘁",
-                        value=f"𝗢𝗵 𝗻𝗼! 𝗟𝗼𝗼𝗸𝘀 𝗹𝗶𝗸𝗲 <@{message.author.id}> 𝗺𝗲𝘀𝘀𝗲𝗱 𝘂𝗽 𝘁𝗵𝗲 𝘀𝗲𝗾𝘂𝗲𝗻𝗰𝗲.\n𝗧𝗵𝗲 𝗻𝗲𝘅𝘁 𝗻𝘂𝗺𝗯𝗲𝗿 𝗶𝘀 𝟭0! <:pinkyheart:924100914695000104>")
+                        value=f"𝗢𝗵 𝗻𝗼! 𝗟𝗼𝗼𝗸𝘀 𝗹𝗶𝗸𝗲 <@{message.author.id}> 𝗺𝗲𝘀𝘀𝗲𝗱 𝘂𝗽 𝘁𝗵𝗲 𝘀𝗲𝗾𝘂𝗲𝗻𝗰𝗲.\n𝗧𝗵𝗲 𝗻𝗲𝘅𝘁 𝗻𝘂𝗺𝗯𝗲𝗿 𝗶𝘀 𝟭𝟢! <:pinkyheart:924100914695000104>")
                     await message.channel.send(embed=embed_m)
 
     # Update JSON file
