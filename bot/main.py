@@ -41,7 +41,7 @@ def evaluate(exp, curr_count):
         return [float("-inf"), False]
 
     # Check if current expression evaluates to 1 more than curr_count
-    return [result, result == curr_count + 1]
+    return [result, result == curr_count + 10]
 
 
 client = discord.Client()
@@ -114,7 +114,7 @@ async def on_message(message):
                       "<a:daysgobyheart:923876397464829992>"]
         
         # List of forbidden starting characters
-        char_arr = [".", ",", "!", "@", "#", "$", "%", "^", "&", ":", ";", "<", ">", "/", "?", "{", "}", "[", "]", "\"", "'", "|", "/"]
+        char_arr = [".", ",", "!", "@", "#", "$", "%", "^", "&", "*", ":", ";", "<", ">", "/", "?", "{", "}", "[", "]", "\"", "'", "|", "/"]
 
         # See stats using tailwhip!user <@user>; user parameter is optional
         if message.content.startswith('tailwhip!user'):
