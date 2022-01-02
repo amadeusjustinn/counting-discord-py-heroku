@@ -41,7 +41,7 @@ def evaluate(exp, curr_count):
         return [float("-inf"), False]
 
     # Check if current expression evaluates to 1 more than curr_count
-    return [result, result == curr_count + 10]
+    return [result, result == curr_count + 1]
 
 
 client = discord.Client()
@@ -108,27 +108,27 @@ async def on_message(message):
         # List of possible reactions
         emoji_list = ["<a:tidesheart:923876187338592306>",              # 0, incorrect
                       "<a:untourablealbumheart:923876065670234164>",    # 1, correct
-                      "<a:mitsparkles:924101093980528650>",             # 2, 690
-                      "<a:onclejazzheart:923876017251160094>"           # 3, 100
-                      "<a:youdeservethisheart:923876695516282931>",     # 4, 200
+                      "<a:mitsparkles:924101093980528650>",             # 2, 69
+                      "<a:onclejazzheart:923876017251160094>"           # 3, 10
+                      "<a:youdeservethisheart:923876695516282931>",     # 4, 20
                       "<a:daysgobyheart:923876397464829992>",           # 5, 420
-                      "<a:mitfrog:924101595329888287>",                 # 6, 300
-                      "<:mituwu:924101386071851008>",                   # 7, 400
-                      "<:mitlogo:923878289427279892>",                  # 8, 500
-                      "<:mitdaisy:923878289410506802>",                 # 9, 600
-                      "<:emmawaiting:924511130838245446>",              # 10, 700
-                      "<:blushyhearts:923878290387771402>",             # 11, 800
-                      "<a:ashestoashes:925332671461228624>",            # 12, 900
-                      "<a:Ausar:925986282830725170>",                   # 13, 1000
-                      "<:onclejazz:923877566819991563>",                # 14, 2000
-                      "<:mitnumb:923877630506328085>",                  # 15, 3000
-                      "<:mitsunglasses:923877630846066708>",            # 16, 4000
-                      "<:mitqt:923878289033019392>",                    # 17, 5000
-                      "<a:pulsingheart:923890933391564810>",            # 18, 6000
-                      "<a:mithug:923878945651298304>",                  # 19, 7000
-                      "<:mitwhistle:923878289083359264>",               # 20, 8000
-                      "<:mitsmile:923878289423102002>",                 # 21, 9000
-                      "<a:prideheart:923877371231207484>"               # 22, 10 000
+                      "<a:mitfrog:924101595329888287>",                 # 6, 30
+                      "<:mituwu:924101386071851008>",                   # 7, 40
+                      "<:mitlogo:923878289427279892>",                  # 8, 50
+                      "<:mitdaisy:923878289410506802>",                 # 9, 60
+                      "<:emmawaiting:924511130838245446>",              # 10, 70
+                      "<:blushyhearts:923878290387771402>",             # 11, 80
+                      "<a:ashestoashes:925332671461228624>",            # 12, 90
+                      "<a:Ausar:925986282830725170>",                   # 13, 100
+                      "<:onclejazz:923877566819991563>",                # 14, 200
+                      "<:mitnumb:923877630506328085>",                  # 15, 300
+                      "<:mitsunglasses:923877630846066708>",            # 16, 400
+                      "<:mitqt:923878289033019392>",                    # 17, 500
+                      "<a:pulsingheart:923890933391564810>",            # 18, 600
+                      "<a:mithug:923878945651298304>",                  # 19, 700
+                      "<:mitwhistle:923878289083359264>",               # 20, 800
+                      "<:mitsmile:923878289423102002>",                 # 21, 900
+                      "<a:prideheart:923877371231207484>"               # 22, 1000
                       ]
         
         # List of forbidden starting characters
@@ -194,7 +194,7 @@ async def on_message(message):
                 stats_arr = [ct_str, cc_str, ca_str]
                 
             embed_m.add_field(
-                    name="<:eve:925331465649131540> 𝗖𝗼𝘂𝗻𝘁𝗶𝗻𝗴 𝘀𝘁𝗮𝘁𝘀",
+                    name="<:lilemma:926078630386364436> 𝗖𝗼𝘂𝗻𝘁𝗶𝗻𝗴 𝘀𝘁𝗮𝘁𝘀",
                     value="\n".join(stats_arr))
 
             await message.channel.send(embed=embed_m)
@@ -211,50 +211,51 @@ async def on_message(message):
                 # Check using evaluate and check for user repeat counting
                 result = evaluate(expression, data["curr_count"])
 
-                if result[1]:
+                if result[1] and data["last_user"] != message.author.id:
+                    data["last_user"] = message.author.id
                     emoji = emoji_list[1]
                     data["curr_count"] = result[0]
-                    if data["curr_count"] == 690:
+                    if data["curr_count"] == 69:
                         emoji = emoji_list[2]
-                    if data["curr_count"] == 100:
+                    if data["curr_count"] == 10:
                         emoji = emoji_list[3]
-                    elif data["curr_count"] == 200:
+                    elif data["curr_count"] == 20:
                         emoji = emoji_list[4]
-                    elif data["curr_count"] == 300:
+                    elif data["curr_count"] == 30:
                         emoji = emoji_list[6]
-                    elif data["curr_count"] == 400:
+                    elif data["curr_count"] == 40:
                         emoji = emoji_list[7]
                     elif data["curr_count"] == 420:
                         emoji = emoji_list[5]
-                    elif data["curr_count"] == 500:
+                    elif data["curr_count"] == 50:
                         emoji = emoji_list[8]
-                    elif data["curr_count"] == 600:
+                    elif data["curr_count"] == 60:
                         emoji = emoji_list[9]
-                    elif data["curr_count"] == 700:
+                    elif data["curr_count"] == 70:
                         emoji = emoji_list[10]
-                    elif data["curr_count"] == 800:
+                    elif data["curr_count"] == 80:
                         emoji = emoji_list[11]
-                    elif data["curr_count"] == 900:
+                    elif data["curr_count"] == 90:
                         emoji = emoji_list[12]
-                    elif data["curr_count"] == 1000:
+                    elif data["curr_count"] == 100:
                         emoji = emoji_list[13]
-                    elif data["curr_count"] == 2000:
+                    elif data["curr_count"] == 200:
                         emoji = emoji_list[14]
-                    elif data["curr_count"] == 3000:
+                    elif data["curr_count"] == 300:
                         emoji = emoji_list[15]
-                    elif data["curr_count"] == 4000:
+                    elif data["curr_count"] == 400:
                         emoji = emoji_list[16]
-                    elif data["curr_count"] == 5000:
+                    elif data["curr_count"] == 500:
                         emoji = emoji_list[17]
-                    elif data["curr_count"] == 6000:
+                    elif data["curr_count"] == 600:
                         emoji = emoji_list[18]
-                    elif data["curr_count"] == 7000:
+                    elif data["curr_count"] == 700:
                         emoji = emoji_list[19]
-                    elif data["curr_count"] == 8000:
+                    elif data["curr_count"] == 800:
                         emoji = emoji_list[20]
-                    elif data["curr_count"] == 9000:
+                    elif data["curr_count"] == 900:
                         emoji = emoji_list[21]
-                    elif data["curr_count"] == 10000:
+                    elif data["curr_count"] == 1000:
                         emoji = emoji_list[22]
                         
                     await message.add_reaction(emoji)
