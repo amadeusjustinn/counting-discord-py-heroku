@@ -200,6 +200,10 @@ async def on_message(message):
             await message.channel.send(embed=embed_m)
 
         else:
+            msg_arr = message.content.split()
+            if len(msg_arr) == 0:
+                return
+           
             # Evaluate first string before whitespace
             expression = message.content.split()[0]
             
