@@ -87,8 +87,8 @@ async def on_message(message):
         # Confirmation message
         embed_m = discord.Embed()
         embed_m.add_field(
-            name="𝗖𝗵𝗮𝗻𝗻𝗲𝗹 𝘀𝗲𝘁 <:mitlogo:923878289427279892>",
-            value=f"𝗖𝗼𝘂𝗻𝘁𝗶𝗻𝗴 𝗰𝗵𝗮𝗻𝗻𝗲𝗹 𝗵𝗮𝘀 𝗯𝗲𝗲𝗻 𝘀𝗲𝘁 𝘁𝗼 <#{message.channel.id}>. 𝗚𝗲𝘁 𝗰𝗼𝘂𝗻𝘁𝗶𝗻𝗴 𝗮𝗻𝗱 𝗵𝗮𝘃𝗲 𝗳𝘂𝗻! <:mituwu:924101386071851008>")
+            name="𝗖𝗵𝗮𝗻𝗻𝗲𝗹 𝘀𝗲𝘁 <:mitlogo:931079481345601617>",
+            value=f"𝗖𝗼𝘂𝗻𝘁𝗶𝗻𝗴 𝗰𝗵𝗮𝗻𝗻𝗲𝗹 𝗵𝗮𝘀 𝗯𝗲𝗲𝗻 𝘀𝗲𝘁 𝘁𝗼 <#{message.channel.id}>. 𝗚𝗲𝘁 𝗰𝗼𝘂𝗻𝘁𝗶𝗻𝗴 𝗮𝗻𝗱 𝗵𝗮𝘃𝗲 𝗳𝘂𝗻! <:mituwu:931097521554604082>")
         await message.channel.send(embed=embed_m)
 
     # Only react to other messages if they are sent in counting channel
@@ -101,34 +101,34 @@ async def on_message(message):
             # Confirmation message
             embed_m = discord.Embed()
             embed_m.add_field(
-                name="𝗖𝗵𝗮𝗻𝗻𝗲𝗹 𝘂𝗻𝘀𝗲𝘁 <a:mitfrogskip:924101595791233075>",
-                value=f"𝗖𝗼𝘂𝗻𝘁𝗶𝗻𝗴 𝗰𝗵𝗮𝗻𝗻𝗲𝗹 𝗶𝘀 𝗻𝗼 𝗹𝗼𝗻𝗴𝗲𝗿 <#{message.channel.id}>. 𝗨𝘀𝗲 `tailwhip!set` 𝗶𝗻 𝗮 𝗰𝗵𝗮𝗻𝗻𝗲𝗹 𝘁𝗼 𝘀𝗲𝘁 𝗶𝘁 𝗳𝗼𝗿 𝗰𝗼𝘂𝗻𝘁𝗶𝗻𝗴. <:mitfrog:923878290689753148>")
+                name="𝗖𝗵𝗮𝗻𝗻𝗲𝗹 𝘂𝗻𝘀𝗲𝘁 <a:frogskipmit:931223958232117348>",
+                value=f"𝗖𝗼𝘂𝗻𝘁𝗶𝗻𝗴 𝗰𝗵𝗮𝗻𝗻𝗲𝗹 𝗶𝘀 𝗻𝗼 𝗹𝗼𝗻𝗴𝗲𝗿 <#{message.channel.id}>. 𝗨𝘀𝗲 `tailwhip!set` 𝗶𝗻 𝗮 𝗰𝗵𝗮𝗻𝗻𝗲𝗹 𝘁𝗼 𝘀𝗲𝘁 𝗶𝘁 𝗳𝗼𝗿 𝗰𝗼𝘂𝗻𝘁𝗶𝗻𝗴. <a:froggymit:931065352803209288>")
             await message.channel.send(embed=embed_m)
 
         # List of possible reactions
-        emoji_list = ["<a:tidesheart:923876187338592306>",              # 0, incorrect
-                      "<a:untourablealbumheart:923876065670234164>",    # 1, correct
-                      "<a:mitsparkles:924101093980528650>",             # 2, 69
-                      "<a:onclejazzheart:923876017251160094>"           # 3, 10
-                      "<a:youdeservethisheart:923876695516282931>",     # 4, 20
-                      "<a:daysgobyheart:923876397464829992>",           # 5, 420
-                      "<a:mitfrog:924101595329888287>",                 # 6, 30
-                      "<:mituwu:924101386071851008>",                   # 7, 40
-                      "<:mitlogo:923878289427279892>",                  # 8, 50
-                      "<:mitdaisy:923878289410506802>",                 # 9, 60
-                      "<:emmawaiting:924511130838245446>",              # 10, 70
-                      "<:blushyhearts:923878290387771402>",             # 11, 80
-                      "<a:ashestoashes:925332671461228624>",            # 12, 90
-                      "<a:Ausar:925986282830725170>",                   # 13, 100
-                      "<:onclejazz:923877566819991563>",                # 14, 200
-                      "<:mitnumb:923877630506328085>",                  # 15, 300
-                      "<:mitsunglasses:923877630846066708>",            # 16, 400
-                      "<:mitqt:923878289033019392>",                    # 17, 500
-                      "<a:pulsingheart:923890933391564810>",            # 18, 600
-                      "<a:mithug:923878945651298304>",                  # 19, 700
-                      "<:mitwhistle:923878289083359264>",               # 20, 800
-                      "<:mitsmile:923878289423102002>",                 # 21, 900
-                      "<a:prideheart:923877371231207484>"               # 22, 1000
+        emoji_list = ["<a:heartlilac:931088577075482655>",              # 0, incorrect
+                      "<a:heartuntourablealbum:931059638223388702>",    # 1, correct
+                      "<a:mitsparkles:931075919014141952>",             # 2, 69
+                      "<a:heartonclejazz:931061570920931368>"           # 3, 10
+                      "<a:heartyoudeservethis:931070978472153088>",     # 4, 20
+                      "<a:heartdaysgoby:931059068662079488>",           # 5, 420
+                      "<a:froggymit:931065352803209288>",               # 6, 30
+                      "<:mituwu:931097521554604082>",                   # 7, 40
+                      "<:mitlogo:931079481345601617>",                  # 8, 50
+                      "<:mitdaisy:931252817417605190>",                 # 9, 60
+                      "<:emmawaiting:931065882527027250>",              # 10, 70
+                      "<:blushyhearts:931093478920814612>",             # 11, 80
+                      "<:ahhh:931097728304443453>",                     # 12, 90
+                      "<a:Ausar:931091601441308703>",                   # 13, 100
+                      "<:onclejazz:931253711240564747>",                # 14, 200
+                      "<:mitnumb:931254266243481660>",                  # 15, 300
+                      "<:nortoncommander:931089415835619378>",          # 16, 400
+                      "<:mitqt:931254665167908905>",                    # 17, 500
+                      "<a:heartpulsing:931066370509119529>",            # 18, 600
+                      "<a:mithug:931091404401279056>",                  # 19, 700
+                      "<:heartato:931100200695660554>",                 # 20, 800
+                      "<:mitsmile:931104285083725935>",                 # 21, 900
+                      "<a:heartpride:931257165287673876>"               # 22, 1000
                       ]
         
         # List of forbidden starting characters
@@ -181,7 +181,7 @@ async def on_message(message):
 
             ct_str = f"• 𝗧𝗼𝘁𝗮𝗹 𝗰𝗼𝘂𝗻𝘁𝘀 𝗳𝗿𝗼𝗺 <@{u_id}>: {count_total}"
             cc_str = f"• 𝗖𝗼𝗿𝗿𝗲𝗰𝘁 𝗰𝗼𝘂𝗻𝘁𝘀 𝗳𝗿𝗼𝗺 <@{u_id}>: {count_correct}"
-            sc_str = "𝗦𝘁𝗮𝗿𝘁 𝗰𝗼𝘂𝗻𝘁𝗶𝗻𝗴 𝗮𝗻𝗱 𝗵𝗮𝘃𝗲 𝗳𝘂𝗻! <:mitkiss:923877937923637269>"
+            sc_str = "𝗦𝘁𝗮𝗿𝘁 𝗰𝗼𝘂𝗻𝘁𝗶𝗻𝗴 𝗮𝗻𝗱 𝗵𝗮𝘃𝗲 𝗳𝘂𝗻! <:mitblowkiss:931219843963838565>"
             embed_m = discord.Embed()
 
             # Special case: user has never counted (avoiding ZeroDivisionError)
@@ -194,7 +194,7 @@ async def on_message(message):
                 stats_arr = [ct_str, cc_str, ca_str]
                 
             embed_m.add_field(
-                    name="<:lilemma:926078630386364436> 𝗖𝗼𝘂𝗻𝘁𝗶𝗻𝗴 𝘀𝘁𝗮𝘁𝘀",
+                    name="<:lilemma:931223678811770950> 𝗖𝗼𝘂𝗻𝘁𝗶𝗻𝗴 𝘀𝘁𝗮𝘁𝘀",
                     value="\n".join(stats_arr))
 
             await message.channel.send(embed=embed_m)
@@ -274,8 +274,8 @@ async def on_message(message):
 
                     embed_m = discord.Embed()
                     embed_m.add_field(
-                        name="<a:mitexclaimed:924105720293646367> 𝗪𝗿𝗼𝗻𝗴 𝗰𝗼𝘂𝗻𝘁",
-                        value=f"𝗢𝗵 𝗻𝗼! 𝗟𝗼𝗼𝗸𝘀 𝗹𝗶𝗸𝗲 <@{message.author.id}> 𝗺𝗲𝘀𝘀𝗲𝗱 𝘂𝗽 𝘁𝗵𝗲 𝘀𝗲𝗾𝘂𝗲𝗻𝗰𝗲.\n𝗧𝗵𝗲 𝗻𝗲𝘅𝘁 𝗻𝘂𝗺𝗯𝗲𝗿 𝗶𝘀 𝟭! <:pinkyheart:924100914695000104>")
+                        name="<a:heartbreakmit:931240957066764318> 𝗪𝗿𝗼𝗻𝗴 𝗰𝗼𝘂𝗻𝘁",
+                        value=f"𝗢𝗵 𝗻𝗼! 𝗟𝗼𝗼𝗸𝘀 𝗹𝗶𝗸𝗲 <@{message.author.id}> 𝗺𝗲𝘀𝘀𝗲𝗱 𝘂𝗽 𝘁𝗵𝗲 𝘀𝗲𝗾𝘂𝗲𝗻𝗰𝗲.\n𝗧𝗵𝗲 𝗻𝗲𝘅𝘁 𝗻𝘂𝗺𝗯𝗲𝗿 𝗶𝘀 𝟭! <:heartpinky:931246593527644190>")
                     await message.channel.send(embed=embed_m)
 
     # Update JSON file
