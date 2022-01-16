@@ -136,32 +136,8 @@ async def on_message(message):
     with open(filename, "r") as file1:
         data = json.load(file1)
 
-    # Set counting channel using tailwhip!set
-    if message.content.startswith('tailwhip!set'):
-        # This is the setting part
-        data["channel"] = message.channel.id
-
-        # Confirmation message
-        embed_m = discord.Embed()
-        embed_m.add_field(
-            name="𝗖𝗵𝗮𝗻𝗻𝗲𝗹 𝘀𝗲𝘁 <:mitlogo:931079481345601617>",
-            value=f"𝗖𝗼𝘂𝗻𝘁𝗶𝗻𝗴 𝗰𝗵𝗮𝗻𝗻𝗲𝗹 𝗵𝗮𝘀 𝗯𝗲𝗲𝗻 𝘀𝗲𝘁 𝘁𝗼 <#{message.channel.id}>. 𝗚𝗲𝘁 𝗰𝗼𝘂𝗻𝘁𝗶𝗻𝗴 𝗮𝗻𝗱 𝗵𝗮𝘃𝗲 𝗳𝘂𝗻! <:mituwu:931097521554604082>")
-        await message.channel.send(embed=embed_m)
-
     # Only react to other messages if they are sent in counting channel
-    if message.channel.id == data["channel"]:
-        # Unset counting channel using tailwhip!unset
-        if message.content.startswith('tailwhip!unset'):
-            # This is the unsetting part
-            data["channel"] = 0
-
-            # Confirmation message
-            embed_m = discord.Embed()
-            embed_m.add_field(
-                name="𝗖𝗵𝗮𝗻𝗻𝗲𝗹 𝘂𝗻𝘀𝗲𝘁 <a:frogskipmit:931223958232117348>",
-                value=f"𝗖𝗼𝘂𝗻𝘁𝗶𝗻𝗴 𝗰𝗵𝗮𝗻𝗻𝗲𝗹 𝗶𝘀 𝗻𝗼 𝗹𝗼𝗻𝗴𝗲𝗿 <#{message.channel.id}>. 𝗨𝘀𝗲 `tailwhip!set` 𝗶𝗻 𝗮 𝗰𝗵𝗮𝗻𝗻𝗲𝗹 𝘁𝗼 𝘀𝗲𝘁 𝗶𝘁 𝗳𝗼𝗿 𝗰𝗼𝘂𝗻𝘁𝗶𝗻𝗴. <a:froggymit:931065352803209288>")
-            await message.channel.send(embed=embed_m)
-
+    if message.channel.id == os.getenv("CHANNEL_ID"):
         # List of possible reactions
         emoji_list = ["<a:heartlilac:931088577075482655>",              # 0, incorrect
                       "<a:heartuntourablealbum:931059638223388702>",    # 1, correct
