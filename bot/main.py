@@ -50,10 +50,68 @@ client = discord.Client()
 @client.event
 async def on_ready():
     """
-    Confirms that the bot is ready to use.
+    Checks last valid count (due to bot cycling). Confirms that the bot is ready to use.
     """
 
+    incorrect_emoji = "<a:heartlilac:931088577075482655>"
+
+    # List of forbidden start/end characters
+    char_arr = [".", ",", "!", "@", "#", "$", "%", "^", "&", ":", ";", "/", "*",
+                "(", ")", "<", ">", "?", "{", "}", "[", "]", "\"", "'", "|", "_"]
+
+    # Access JSON file for updating last count
+    filename = os.path.dirname(os.path.realpath(__file__)) + '/data.json'
+    with open(filename, "r") as file1:
+        data = json.load(file1)
+
+    # Get counting channel history
+    channel_hist = await client.get_channel(os.getenv("CHANNEL_ID")).history(limit=float("inf")).flatten()
+
+    # Create flag to avoid checking every message in the channel, only the last valid one
+    checked_flag = False
+
+    for msg in channel_hist:
+        # Stop checking if last valid message has been checked
+        if checked_flag:
+            break
+
+        split_arr = msg.content.split()
+        if len(split_arr) != 0:
+            expression = split_arr[0]
+
+            result = evaluate(expression, data["curr_count"])[0]
+
+            # If expression can be evaluated
+            # If expression starts or ends with forbidden character
+            evaluateable = result != float("-inf")
+            with_fb = any(expression.startswith(fb_char) for fb_char in char_arr) or any(
+                expression.endswith(fb_char) for fb_char in char_arr)
+
+            # Message neither starts nor ends with forbidden character
+            # If expression can be evaluated
+            if evaluateable and (not with_fb):
+                react_arr = msg.reactions
+
+                for emo1 in react_arr:
+                    # Only care about emoji sent by bot for checked flag
+                    if emo1.me:
+                        checked_flag = True
+
+                        # Store 0 as last count if "incorrect" emoji is used, store result otherwise
+                        if incorrect_emoji[-19:-1] == str(emo1.emoji.id):
+                            data["curr_count"] = 0
+                        else:
+                            data["curr_count"] = result
+
+    print(data["curr_count"])
+
+    # Update JSON file
+    with open(filename, "w") as file2:
+        json.dump(data, file2, indent=4)
+
+    # Confirmation message
     print('Logged in')
+
     return
 
 
@@ -73,11 +131,10 @@ async def on_message(message):
     if message.author == client.user:
         return
 
-    # Access JSON file for counting sentences checked and verified
+    # Access JSON file for counting checked and verified sentences
     filename = os.path.dirname(os.path.realpath(__file__)) + '/data.json'
     with open(filename, "r") as file1:
         data = json.load(file1)
-        file1.close()
 
     # Set counting channel using tailwhip!set
     if message.content.startswith('tailwhip!set'):
@@ -130,9 +187,10 @@ async def on_message(message):
                       "<:mitsmile:931104285083725935>",                 # 21, 900
                       "<a:heartpride:931257165287673876>"               # 22, 1000
                       ]
-        
-        # List of forbidden starting characters
-        char_arr = [".", ",", "!", "@", "#", "$", "%", "^", "&", "*", ":", ";", "<", ">", "/", "?", "{", "}", "[", "]", "\"", "'", "|", "/"]
+
+        # List of forbidden start/end characters
+        char_arr = [".", ",", "!", "@", "#", "$", "%", "^", "&", ":", ";", "/", "*",
+                    "(", ")", "<", ">", "?", "{", "}", "[", "]", "\"", "'", "|", "_"]
 
         # See stats using tailwhip!user <@user>; user parameter is optional
         if message.content.startswith('tailwhip!user'):
@@ -156,28 +214,28 @@ async def on_message(message):
                 split_arr = msg.content.split()
                 if len(split_arr) != 0:
                     expression = split_arr[0]
-                    
+
                     # If expression can be evaluated
                     # If expression starts with forbidden character
                     # If message is written by user in question
-                    evaluateable = evaluate(expression, data["curr_count"])[0] != float("-inf")
-                    starts_with_fb = any(msg.content.startswith(fb_char) for fb_char in char_arr)
+                    evaluateable = evaluate(expression, data["curr_count"])[
+                        0] != float("-inf")
+                    with_fb = any(msg.content.startswith(fb_char) for fb_char in char_arr) or any(
+                        msg.content.endswith(fb_char) for fb_char in char_arr)
                     author_verif = str(msg.author.id) == u_id
 
                     # Message does not start with forbidden character
                     # If expression can be evaluated and written by user in question
-                    if evaluateable and (not starts_with_fb) and author_verif:
+                    if evaluateable and (not with_fb) and author_verif:
                         react_arr = msg.reactions
                         for emo1 in react_arr:
                             # Only care about emoji sent by bot for total count
                             if emo1.me:
                                 count_total += 1
-                                for emo2 in emoji_list[1:]:
-                                    # Only care about "correct" emoji sent by bot for correct count
-                                    if emo2[-19:-1] == str(emo1.emoji.id):
-                                        count_correct += 1
-                                        break
-                                break
+
+                                # Increment correct count if "incorrect" emoji NOT used
+                                if emoji_list[0][-19:-1] != str(emo1.emoji.id):
+                                    count_correct += 1
 
             ct_str = f"• 𝗧𝗼𝘁𝗮𝗹 𝗰𝗼𝘂𝗻𝘁𝘀 𝗳𝗿𝗼𝗺 <@{u_id}>: {count_total}"
             cc_str = f"• 𝗖𝗼𝗿𝗿𝗲𝗰𝘁 𝗰𝗼𝘂𝗻𝘁𝘀 𝗳𝗿𝗼𝗺 <@{u_id}>: {count_correct}"
@@ -188,14 +246,14 @@ async def on_message(message):
             if count_total == 0:
                 ca_str_0 = f"• 𝗖𝗼𝘂𝗻𝘁𝗶𝗻𝗴 𝗮𝗰𝗰𝘂𝗿𝗮𝗰𝘆 𝗼𝗳 <@{u_id}>: 𝗡/𝗔"
                 stats_arr = [ct_str, cc_str, ca_str_0, sc_str]
-                
+
             else:
                 ca_str = f"• 𝗖𝗼𝘂𝗻𝘁𝗶𝗻𝗴 𝗮𝗰𝗰𝘂𝗿𝗮𝗰𝘆 𝗼𝗳 <@{u_id}>: {round(count_correct / count_total * 100, 5)}%"
                 stats_arr = [ct_str, cc_str, ca_str]
-                
+
             embed_m.add_field(
-                    name="<:lilemma:931223678811770950> 𝗖𝗼𝘂𝗻𝘁𝗶𝗻𝗴 𝘀𝘁𝗮𝘁𝘀",
-                    value="\n".join(stats_arr))
+                name="<:lilemma:931223678811770950> 𝗖𝗼𝘂𝗻𝘁𝗶𝗻𝗴 𝘀𝘁𝗮𝘁𝘀",
+                value="\n".join(stats_arr))
 
             await message.channel.send(embed=embed_m)
 
@@ -203,15 +261,16 @@ async def on_message(message):
             msg_arr = message.content.split()
             if len(msg_arr) == 0:
                 return
-           
+
             # Evaluate first string before whitespace
             expression = message.content.split()[0]
-            
+
             # If expression starts with forbidden character
-            starts_with_fb = any(message.content.startswith(fb_char) for fb_char in char_arr)
+            with_fb = any(expression.startswith(fb_char) for fb_char in char_arr) or any(
+                expression.endswith(fb_char) for fb_char in char_arr)
 
             # Disregard if there are letters
-            if (not any(char.isalpha() for char in expression)) and (not starts_with_fb) and ("@" not in expression) and ("?" not in expression):
+            if (not any(char.isalpha() for char in expression)) and (not with_fb) and ("@" not in expression):
                 # Check using evaluate and check for user repeat counting
                 result = evaluate(expression, data["curr_count"])
 
@@ -261,7 +320,7 @@ async def on_message(message):
                         emoji = emoji_list[21]
                     elif data["curr_count"] == 1000:
                         emoji = emoji_list[22]
-                        
+
                     await message.add_reaction(emoji)
 
                 else:
@@ -281,7 +340,6 @@ async def on_message(message):
     # Update JSON file
     with open(filename, "w") as file2:
         json.dump(data, file2, indent=4)
-        file2.close()
 
     return
 
