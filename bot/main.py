@@ -65,7 +65,7 @@ async def on_ready():
         data = json.load(file1)
 
     # Get counting channel history
-    channel_hist = await client.get_channel(int(os.getenv("CHANNEL_ID"))).history(limit=float("inf")).flatten()
+    channel_hist = await client.get_channel(os.getenv("CHANNEL_ID")).history(limit=float("inf")).flatten()
 
     # Create flag to avoid checking every message in the channel, only the last valid one
     checked_flag = False
@@ -137,7 +137,7 @@ async def on_message(message):
         data = json.load(file1)
 
     # Only react to other messages if they are sent in counting channel
-    if message.channel.id == int(os.getenv("CHANNEL_ID")):
+    if message.channel.id == os.getenv("CHANNEL_ID"):
         # List of possible reactions
         emoji_list = ["<a:heartlilac:931088577075482655>",              # 0, incorrect
                       "<a:heartuntourablealbum:931059638223388702>",    # 1, correct
