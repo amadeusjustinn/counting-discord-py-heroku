@@ -9,11 +9,11 @@ def evaluate(exp, curr_count):
 
     Parameters
     ==========
-    - exp
+    - exp: :class:`str`
 
         Expression to be verified
 
-    - curr_count
+    - curr_count: :class:`int`
 
         The current count
 
@@ -21,8 +21,8 @@ def evaluate(exp, curr_count):
     =======
     [
 
-        - number: Evaluation result of expression (if valid), -infinity otherwise,
-        - boolean value: whether the expression evaluates to current_count + 1
+        - :class:`int`: Evaluation result of expression (if valid), -infinity otherwise,
+        - :class:`bool`: Whether the expression evaluates to current_count + 1
 
     ]
     """
@@ -53,11 +53,11 @@ async def on_ready():
     Checks last valid count (due to bot cycling). Confirms that the bot is ready to use.
     """
 
-    incorrect_emoji = "<a:heartlilac:931088577075482655>"
+    incorrect_emoji = "<a:burst2:934223774759399514>"
 
     # List of forbidden start/end characters
-    char_arr = [".", ",", "!", "@", "#", "$", "%", "^", "&", ":", ";", "/", "*",
-                "(", ")", "<", ">", "?", "{", "}", "[", "]", "\"", "'", "|", "_"]
+    char_arr = ["~", "`", ".", ",", "!", "@", "#", "$", "%", "^", "&", ":", ";", "/", "\\",
+                "*", "(", ")", "<", ">", "?", "{", "}", "[", "]", "\"", "'", "|", "_", "="]
 
     # Access JSON file for updating last count
     filename = os.path.dirname(os.path.realpath(__file__)) + '/data.json'
@@ -65,7 +65,8 @@ async def on_ready():
         data = json.load(file1)
 
     # Get counting channel history
-    channel_hist = await client.get_channel(int(os.getenv("CHANNEL_ID"))).history(limit=float("inf")).flatten()
+    c_id = int(os.getenv("CHANNEL_ID"))
+    channel_hist = await client.get_channel(c_id).history(limit=float("inf")).flatten()
 
     # Create flag to avoid checking every message in the channel, only the last valid one
     checked_flag = False
@@ -100,8 +101,12 @@ async def on_ready():
                         # Store 0 as last count if "incorrect" emoji is used, store result otherwise
                         if incorrect_emoji[-19:-1] == str(emo1.emoji.id):
                             data["curr_count"] = 0
+                            data["last_user"] = 0
                         else:
                             data["curr_count"] = result
+                            data["last_user"] = msg.author.id
+
+                        break
 
     print(data["curr_count"])
 
@@ -122,7 +127,7 @@ async def on_message(message):
 
     Parameters
     ==========
-    - message
+    - message: :class:`Message`
 
         Newest message
     """
@@ -139,34 +144,16 @@ async def on_message(message):
     # Only react to other messages if they are sent in counting channel
     if message.channel.id == int(os.getenv("CHANNEL_ID")):
         # List of possible reactions
-        emoji_list = ["<a:heartlilac:931088577075482655>",              # 0, incorrect
-                      "<a:heartuntourablealbum:931059638223388702>",    # 1, correct
+        emoji_list = ["<a:burst5:934223774788759592>",                  # 0, incorrect
+                      "<a:burst6:934223774914596864>",                  # 1, correct
                       "<a:mitsparkles:931075919014141952>",             # 2, 69
-                      "<a:heartonclejazz:931061570920931368>"           # 3, 10
-                      "<a:heartyoudeservethis:931070978472153088>",     # 4, 20
-                      "<a:heartdaysgoby:931059068662079488>",           # 5, 420
-                      "<a:froggymit:931065352803209288>",               # 6, 30
-                      "<:mituwu:931097521554604082>",                   # 7, 40
-                      "<:mitlogo:931079481345601617>",                  # 8, 50
-                      "<:mitdaisy:931252817417605190>",                 # 9, 60
-                      "<:emmawaiting:931065882527027250>",              # 10, 70
-                      "<:blushyhearts:931093478920814612>",             # 11, 80
-                      "<:ahhh:931097728304443453>",                     # 12, 90
-                      "<a:Ausar:931091601441308703>",                   # 13, 100
-                      "<:onclejazz:931253711240564747>",                # 14, 200
-                      "<:mitnumb:931254266243481660>",                  # 15, 300
-                      "<:nortoncommander:931089415835619378>",          # 16, 400
-                      "<:mitqt:931254665167908905>",                    # 17, 500
-                      "<a:heartpulsing:931066370509119529>",            # 18, 600
-                      "<a:mithug:931091404401279056>",                  # 19, 700
-                      "<:heartato:931100200695660554>",                 # 20, 800
-                      "<:mitsmile:931104285083725935>",                 # 21, 900
-                      "<a:heartpride:931257165287673876>"               # 22, 1000
+                      "<a:bubbler:934224098165395476> ",                # 3, every 10 under 100
+                      "<a:bubblep:934224098425450526>"                  # 4, every 100 under 1000
                       ]
 
         # List of forbidden start/end characters
-        char_arr = [".", ",", "!", "@", "#", "$", "%", "^", "&", ":", ";", "/", "*",
-                    "(", ")", "<", ">", "?", "{", "}", "[", "]", "\"", "'", "|", "_"]
+        char_arr = ["~", "`", ".", ",", "!", "@", "#", "$", "%", "^", "&", ":", ";", "/", "\\",
+                    "*", "(", ")", "<", ">", "?", "{", "}", "[", "]", "\"", "'", "|", "_", "="]
 
         # See stats using tailwhip!user <@user>; user parameter is optional
         if message.content.startswith('tailwhip!user'):
@@ -252,50 +239,16 @@ async def on_message(message):
 
                 if result[1] and data["last_user"] != message.author.id:
                     data["last_user"] = message.author.id
-                    emoji = emoji_list[1]
                     data["curr_count"] = result[0]
+                    emoji = emoji_list[1]
+                    
+                    # Select appropriate emoji
                     if data["curr_count"] == 69:
                         emoji = emoji_list[2]
-                    if data["curr_count"] == 10:
+                    elif data["curr_count"] % 10 == 0 and data["curr_count"] < 100:
                         emoji = emoji_list[3]
-                    elif data["curr_count"] == 20:
+                    elif data["curr_count"] % 100 == 0 and data["curr_count"] <= 1000:
                         emoji = emoji_list[4]
-                    elif data["curr_count"] == 30:
-                        emoji = emoji_list[6]
-                    elif data["curr_count"] == 40:
-                        emoji = emoji_list[7]
-                    elif data["curr_count"] == 420:
-                        emoji = emoji_list[5]
-                    elif data["curr_count"] == 50:
-                        emoji = emoji_list[8]
-                    elif data["curr_count"] == 60:
-                        emoji = emoji_list[9]
-                    elif data["curr_count"] == 70:
-                        emoji = emoji_list[10]
-                    elif data["curr_count"] == 80:
-                        emoji = emoji_list[11]
-                    elif data["curr_count"] == 90:
-                        emoji = emoji_list[12]
-                    elif data["curr_count"] == 100:
-                        emoji = emoji_list[13]
-                    elif data["curr_count"] == 200:
-                        emoji = emoji_list[14]
-                    elif data["curr_count"] == 300:
-                        emoji = emoji_list[15]
-                    elif data["curr_count"] == 400:
-                        emoji = emoji_list[16]
-                    elif data["curr_count"] == 500:
-                        emoji = emoji_list[17]
-                    elif data["curr_count"] == 600:
-                        emoji = emoji_list[18]
-                    elif data["curr_count"] == 700:
-                        emoji = emoji_list[19]
-                    elif data["curr_count"] == 800:
-                        emoji = emoji_list[20]
-                    elif data["curr_count"] == 900:
-                        emoji = emoji_list[21]
-                    elif data["curr_count"] == 1000:
-                        emoji = emoji_list[22]
 
                     await message.add_reaction(emoji)
 
@@ -309,8 +262,8 @@ async def on_message(message):
 
                     embed_m = discord.Embed()
                     embed_m.add_field(
-                        name="<a:heartbreakmit:931240957066764318> 𝗪𝗿𝗼𝗻𝗴 𝗰𝗼𝘂𝗻𝘁",
-                        value=f"𝗢𝗵 𝗻𝗼! 𝗟𝗼𝗼𝗸𝘀 𝗹𝗶𝗸𝗲 <@{message.author.id}> 𝗺𝗲𝘀𝘀𝗲𝗱 𝘂𝗽 𝘁𝗵𝗲 𝘀𝗲𝗾𝘂𝗲𝗻𝗰𝗲.\n𝗧𝗵𝗲 𝗻𝗲𝘅𝘁 𝗻𝘂𝗺𝗯𝗲𝗿 𝗶𝘀 𝟭! <:heartpinky:931246593527644190>")
+                        name="<a:burst2:934223774759399514> 𝗪𝗿𝗼𝗻𝗴 𝗰𝗼𝘂𝗻𝘁 <a:burst2:934223774759399514>",
+                        value=f"𝗹𝗼𝗼𝗸𝘀 𝗹𝗶𝗸𝗲 𝘆𝗼𝘂 𝗺𝗲𝘀𝘀𝗲𝗱 𝘂𝗽 𝘁𝗵𝗲 𝘀𝗲𝗾𝘂𝗲𝗻𝗰𝗲. 𝘁𝗵𝗮𝘁𝘀 𝗼𝗸𝗮𝘆! 𝘁𝗵𝗲 𝗻𝗲𝘅𝘁 𝗻𝘂𝗺𝗯𝗲𝗿 𝗶𝘀 𝟭 <a:burst4:934223774763581540>")
                     await message.channel.send(embed=embed_m)
 
     # Update JSON file
