@@ -237,7 +237,7 @@ async def on_message(message):
                 # Check using evaluate and check for user repeat counting
                 result = evaluate(expression, data["curr_count"])
 
-                if result[1]''' and data["last_user"] != message.author.id''':
+                if result[1]:
                     data["last_user"] = message.author.id
                     data["curr_count"] = result[0]
                     emoji = emoji_list[1]
