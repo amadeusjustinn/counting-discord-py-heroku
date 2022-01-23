@@ -251,7 +251,7 @@ async def on_message(message):
                         emoji = emoji_list[4]
 
                     await message.add_reaction(emoji)
-
+                '''
                 else:
                     # Send "incorrect" emoji
                     await message.add_reaction(emoji_list[0])
@@ -265,7 +265,7 @@ async def on_message(message):
                         name="<a:burst2:934223774759399514> 𝗪𝗿𝗼𝗻𝗴 𝗰𝗼𝘂𝗻𝘁 <a:burst2:934223774759399514>",
                         value=f"𝗹𝗼𝗼𝗸𝘀 𝗹𝗶𝗸𝗲 𝘆𝗼𝘂 𝗺𝗲𝘀𝘀𝗲𝗱 𝘂𝗽 𝘁𝗵𝗲 𝘀𝗲𝗾𝘂𝗲𝗻𝗰𝗲. 𝘁𝗵𝗮𝘁𝘀 𝗼𝗸𝗮𝘆! 𝘁𝗵𝗲 𝗻𝗲𝘅𝘁 𝗻𝘂𝗺𝗯𝗲𝗿 𝗶𝘀 𝟭 <a:burst4:934223774763581540>")
                     await message.channel.send(embed=embed_m)
-
+                '''
     # Update JSON file
     with open(filename, "w") as file2:
         json.dump(data, file2, indent=4)
