@@ -70,6 +70,9 @@ async def on_ready():
 
     # Create flag to avoid checking every message in the channel, only the last valid one
     checked_flag = False
+    
+    # Name of last counter
+    last_counter = "None"
 
     for msg in channel_hist:
         # Stop checking if last valid message has been checked
@@ -105,15 +108,19 @@ async def on_ready():
                         else:
                             data["curr_count"] = result
                             data["last_user"] = msg.author.id
+                            last_counter = msg.author.name
 
                         break
 
-    print(data["curr_count"])
+    print(f"{data["curr_count"]} by {last_counter}")
 
     # Update JSON file
     with open(filename, "w") as file2:
         json.dump(data, file2, indent=4)
 
+    # Change bot status
+    await client.change_presence(status=discord.Status.idle, activity=discord.Activity(type=discord.ActivityType.listening, name="Humming Man"))
+                                 
     # Confirmation message
     print('Logged in')
 
@@ -156,7 +163,7 @@ async def on_message(message):
                     "*", "(", ")", "<", ">", "?", "{", "}", "[", "]", "\"", "'", "|", "_", "="]
 
         # See stats using tailwhip!user <@user>; user parameter is optional
-        if message.content.startswith('tailwhip!user'):
+        if message.content.startswith('hm!user'):
             # Determine whose stats to analyse
             u_id = ""
             msg_arr = message.content.split()
@@ -215,7 +222,7 @@ async def on_message(message):
                 stats_arr = [ct_str, cc_str, ca_str]
 
             embed_m.add_field(
-                name="<:lilemma:931223678811770950> 𝗖𝗼𝘂𝗻𝘁𝗶𝗻𝗴 𝘀𝘁𝗮𝘁𝘀",
+                name="<a:mitbutterflywhite:934267494586265620> 𝗖𝗼𝘂𝗻𝘁𝗶𝗻𝗴 𝘀𝘁𝗮𝘁𝘀",
                 value="\n".join(stats_arr))
 
             await message.channel.send(embed=embed_m)
@@ -263,7 +270,7 @@ async def on_message(message):
                     embed_m = discord.Embed()
                     embed_m.add_field(
                         name="<a:burst2:934223774759399514> 𝗪𝗿𝗼𝗻𝗴 𝗰𝗼𝘂𝗻𝘁 <a:burst2:934223774759399514>",
-                        value=f"𝗹𝗼𝗼𝗸𝘀 𝗹𝗶𝗸𝗲 𝘆𝗼𝘂 𝗺𝗲𝘀𝘀𝗲𝗱 𝘂𝗽 𝘁𝗵𝗲 𝘀𝗲𝗾𝘂𝗲𝗻𝗰𝗲. 𝘁𝗵𝗮𝘁𝘀 𝗼𝗸𝗮𝘆! 𝘁𝗵𝗲 𝗻𝗲𝘅𝘁 𝗻𝘂𝗺𝗯𝗲𝗿 𝗶𝘀 𝟭 <a:burst4:934223774763581540>")
+                        value=f"𝗹𝗼𝗼𝗸𝘀 𝗹𝗶𝗸𝗲 𝘆𝗼𝘂 𝗺𝗲𝘀𝘀𝗲𝗱 𝘂𝗽 𝘁𝗵𝗲 𝘀𝗲𝗾𝘂𝗲𝗻𝗰𝗲. 𝘁𝗵𝗮𝘁'𝘀 𝗼𝗸𝗮𝘆! 𝘁𝗵𝗲 𝗻𝗲𝘅𝘁 𝗻𝘂𝗺𝗯𝗲𝗿 𝗶𝘀 𝟭 <a:burst4:934223774763581540>")
                     await message.channel.send(embed=embed_m)
                 
     # Update JSON file
