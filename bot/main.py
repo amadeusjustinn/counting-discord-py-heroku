@@ -71,7 +71,8 @@ async def on_ready():
     # Create flag to avoid checking every message in the channel, only the last valid one
     checked_flag = False
     
-    # Name of last counter
+    # Name of last count and last counter
+    result_g = 0
     last_counter = "None"
 
     for msg in channel_hist:
@@ -108,11 +109,13 @@ async def on_ready():
                         else:
                             data["curr_count"] = result
                             data["last_user"] = msg.author.id
+                            
+                            result_g = result
                             last_counter = msg.author.name
 
                         break
 
-    print(f"{data["curr_count"]} by {last_counter}")
+    print(f"{result_g} by {last_counter}")
 
     # Update JSON file
     with open(filename, "w") as file2:
