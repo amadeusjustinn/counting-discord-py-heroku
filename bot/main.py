@@ -155,9 +155,9 @@ async def on_message(message):
     if message.channel.id == int(os.getenv("CHANNEL_ID")):
         # List of possible reactions
         emoji_list = ["<a:burst5:934223774788759592>",                  # 0, incorrect
-                      "<a:burst6:934223774914596864>",                  # 1, correct
+                      "<a:burst1:934223774734237796>",                  # 1, correct
                       "<a:mitsparkles:931075919014141952>",             # 2, 69
-                      "<a:bubbler:934224098165395476>",                 # 3, every 10 under 100
+                      "<a:burst3:934223774759415828>",                  # 3, every 10 under 100
                       "<a:bubblep:934224098425450526>"                  # 4, every 100 under 1000
                       ]
 
