@@ -53,7 +53,7 @@ async def on_ready():
     Checks last valid count (due to bot cycling). Confirms that the bot is ready to use.
     """
 
-    incorrect_emoji = "<a:bubblercyan:935757958254583868>"
+    incorrect_emoji = "<a:mitbutterflycyan:934267495794237550>"
 
     # List of forbidden start/end characters
     char_arr = ["~", "`", ".", ",", "!", "@", "#", "$", "%", "^", "&", ":", ";", "/", "\\",
