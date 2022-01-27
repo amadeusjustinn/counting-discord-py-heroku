@@ -154,11 +154,11 @@ async def on_message(message):
     # Only react to other messages if they are sent in counting channel
     if message.channel.id == int(os.getenv("CHANNEL_ID")):
         # List of possible reactions
-        emoji_list = ["<a:ablack:934224098085716078>",                  # 0, incorrect
-                      "<a:apink:934224097750171739>",                   # 1, correct
+        emoji_list = ["<a:mitbutterflycyan:934267495794237550>",        # 0, incorrect
+                      "<a:mitbutterflywhite:934267494586265620>",       # 1, correct
                       "<a:hearttriosparkles:931075919014141952>",       # 2, 69
-                      "<a:bubblerf:935756938661232690>",                # 3, every 10 under 100
-                      "<a:adragos:931062597271298059>"                  # 4, every 100 under 1000
+                      "<a:mitbutterflybeige:934267494657581176>",       # 3, every 10 under 100
+                      "<a:mitbutterflypink:934268080878673970>"         # 4, every 100 under 1000
                       ]
 
         # List of forbidden start/end characters
