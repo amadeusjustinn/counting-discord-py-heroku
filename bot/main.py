@@ -122,7 +122,7 @@ async def on_ready():
         json.dump(data, file2, indent=4)
 
     # Change bot status
-    await client.change_presence(status=discord.Status.idle, activity=discord.Activity(type=discord.ActivityType.listening, name="Humming Man"))
+    await client.change_presence(status=discord.Status.idle, activity=discord.Activity(type=discord.ActivityType.listening, name="Tailwhip"))
                                  
     # Confirmation message
     print('Logged in')
