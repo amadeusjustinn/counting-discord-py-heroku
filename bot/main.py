@@ -166,7 +166,7 @@ async def on_message(message):
                     "*", "(", ")", "<", ">", "?", "{", "}", "[", "]", "\"", "'", "|", "_", "="]
 
         # See stats using tailwhip!user <@user>; user parameter is optional
-        if message.content.startswith('mit!user'):
+        if message.content.startswith('tailwhip!user'):
             # Determine whose stats to analyse
             u_id = ""
             msg_arr = message.content.split()
@@ -217,7 +217,7 @@ async def on_message(message):
 
             # Special case: user has never counted (avoiding ZeroDivisionError)
             if count_total == 0:
-                ca_str_0 = f"• 𝗖𝗼𝘂𝗻𝘁𝗶𝗻𝗴 𝗮𝗰𝗰𝘂𝗿𝗮𝗰𝘆 𝗼𝗳 <@{u_id}>: 𝗡/𝗔"
+                ca_str_0 = f"• Counting accuracy of <@{u_id}>: 𝗡/𝗔"
                 stats_arr = [ct_str, cc_str, ca_str_0, sc_str]
 
             else:
