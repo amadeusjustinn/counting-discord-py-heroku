@@ -210,9 +210,9 @@ async def on_message(message):
                                 if emoji_list[0][-19:-1] != str(emo1.emoji.id):
                                     count_correct += 1
 
-            ct_str = f"• 𝗧𝗼𝘁𝗮𝗹 𝗰𝗼𝘂𝗻𝘁𝘀 𝗳𝗿𝗼𝗺 <@{u_id}>: {count_total}"
-            cc_str = f"• 𝗖𝗼𝗿𝗿𝗲𝗰𝘁 𝗰𝗼𝘂𝗻𝘁𝘀 𝗳𝗿𝗼𝗺 <@{u_id}>: {count_correct}"
-            sc_str = "𝗦𝘁𝗮𝗿𝘁 𝗰𝗼𝘂𝗻𝘁𝗶𝗻𝗴 𝗮𝗻𝗱 𝗵𝗮𝘃𝗲 𝗳𝘂𝗻! <:mitblowkiss:931219843963838565>"
+            ct_str = f"• Total counts from <@{u_id}>: {count_total}"
+            cc_str = f"• Correct counts from <@{u_id}>: {count_correct}"
+            sc_str = "have fun <:doggo:957305556555681842>"
             embed_m = discord.Embed()
 
             # Special case: user has never counted (avoiding ZeroDivisionError)
@@ -225,7 +225,7 @@ async def on_message(message):
                 stats_arr = [ct_str, cc_str, ca_str]
 
             embed_m.add_field(
-                name="<a:mitbutterflywhite:934267494586265620> 𝗖𝗼𝘂𝗻𝘁𝗶𝗻𝗴 𝘀𝘁𝗮𝘁𝘀",
+                name=" <:doggo:957305556555681842> Counting stats",
                 value="\n".join(stats_arr))
 
             await message.channel.send(embed=embed_m)
@@ -272,8 +272,8 @@ async def on_message(message):
 
                     embed_m = discord.Embed(colour=0xFFFFFF)
                     embed_m.add_field(
-                        name="<a:burst2:934223774759399514> 𝗪𝗿𝗼𝗻𝗴 𝗰𝗼𝘂𝗻𝘁 <a:burst2:934223774759399514>",
-                        value=f"𝗹𝗼𝗼𝗸𝘀 𝗹𝗶𝗸𝗲 𝘆𝗼𝘂 𝗺𝗲𝘀𝘀𝗲𝗱 𝘂𝗽 𝘁𝗵𝗲 𝘀𝗲𝗾𝘂𝗲𝗻𝗰𝗲. 𝘁𝗵𝗮𝘁'𝘀 𝗼𝗸𝗮𝘆! 𝘁𝗵𝗲 𝗻𝗲𝘅𝘁 𝗻𝘂𝗺𝗯𝗲𝗿 𝗶𝘀 𝟭 <a:burst4:934223774763581540>")
+                        name="<a:hartcherry:957115698231013407> Wrong count <a:hartcherry:957115698231013407>",
+                        value=f"uh oh looks like you messed up the sequence. the next number is 1. <:doggo:957305556555681842>")
                     embed_m.set_thumbnail(url="")
                     await message.channel.send(embed=embed_m)              
                 
