@@ -126,6 +126,13 @@ async def on_ready():
                                  
     # Confirmation message
     print('Logged in')
+    
+    mit = client.get_guild(748634368037355524)
+    try:
+        await mit.leave()
+        print("Left MIT hehe")
+    except HTTPException:
+        print("No leave")
 
     return
 
