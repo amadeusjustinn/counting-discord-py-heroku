@@ -53,7 +53,7 @@ async def on_ready():
     Checks last valid count (due to bot cycling). Confirms that the bot is ready to use.
     """
 
-    incorrect_emoji = "<:doggo:957305556555681842>"
+    incorrect_emoji = "<:gblip:957305556555681842>"
 
     # List of forbidden start/end characters
     char_arr = ["~", "`", ".", ",", "!", "@", "#", "$", "%", "^", "&", ":", ";", "/", "\\",
@@ -154,11 +154,11 @@ async def on_message(message):
     # Only react to other messages if they are sent in counting channel
     if message.channel.id == int(os.getenv("CHANNEL_ID")):
         # List of possible reactions
-        emoji_list = ["<:doggo:957305556555681842>",              # 0, incorrect
-                      "<:seed:958270306609410088>",               # 1, correct
-                      "<:mitangywangy:957115698650415144>",       # 2, 69
-                      "<:duck_knife:957429922312368128>",         # 3, every 10 under 100
-                      "<a:rgbCat:957429181145288765>"             # 4, every 100 under 1000
+        emoji_list = ["<:gblip:957305556555681842>",                 # 0, incorrect
+                      "<:seed:958270306609410088>",                  # 1, correct
+                      "<a:gsparkles:957115698218418287>",            # 2, 69
+                      "<:fduckkill:957429922312368128>",             # 3, every 10 under 100
+                      "<a:gkittykat:957429181145288765>"             # 4, every 100 under 1000
                       ]
 
         # List of forbidden start/end characters
@@ -212,7 +212,7 @@ async def on_message(message):
 
             ct_str = f"• Total counts from <@{u_id}>: {count_total}"
             cc_str = f"• Correct counts from <@{u_id}>: {count_correct}"
-            sc_str = "have fun <:doggo:957305556555681842>"
+            sc_str = "have fun <a:ayellowhart:957115698327482428>"
             embed_m = discord.Embed()
 
             # Special case: user has never counted (avoiding ZeroDivisionError)
@@ -221,11 +221,11 @@ async def on_message(message):
                 stats_arr = [ct_str, cc_str, ca_str_0, sc_str]
 
             else:
-                ca_str = f"• 𝗖𝗼𝘂𝗻𝘁𝗶𝗻𝗴 𝗮𝗰𝗰𝘂𝗿𝗮𝗰𝘆 𝗼𝗳 <@{u_id}>: {round(count_correct / count_total * 100, 5)}%"
+                ca_str = f"• Counting accuracy of <@{u_id}>: {round(count_correct / count_total * 100, 5)}%"
                 stats_arr = [ct_str, cc_str, ca_str]
 
             embed_m.add_field(
-                name=" <:doggo:957305556555681842> Counting stats",
+                name=" <a:ayellowhart:957115698327482428> Counting stats",
                 value="\n".join(stats_arr))
 
             await message.channel.send(embed=embed_m)
@@ -272,8 +272,8 @@ async def on_message(message):
 
                     embed_m = discord.Embed(colour=0xFFFFFF)
                     embed_m.add_field(
-                        name="<a:hartcherry:957115698231013407> Wrong count <a:hartcherry:957115698231013407>",
-                        value=f"uh oh looks like you messed up the sequence. the next number is 1. <:doggo:957305556555681842>")
+                        name="<a:ayellowhart:957115698327482428> Wrong count <a:ayellowhart:957115698327482428>",
+                        value=f"uh oh looks like you messed up the sequence. the next number is 1. <:fduckkill:957429922312368128>")
                     embed_m.set_thumbnail(url="")
                     await message.channel.send(embed=embed_m)              
                 
