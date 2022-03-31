@@ -53,7 +53,7 @@ async def on_ready():
     Checks last valid count (due to bot cycling). Confirms that the bot is ready to use.
     """
 
-    incorrect_emoji = "<a:mitbutterflycyan:934267495794237550>"
+    incorrect_emoji = "<:doggo:957305556555681842>"
 
     # List of forbidden start/end characters
     char_arr = ["~", "`", ".", ",", "!", "@", "#", "$", "%", "^", "&", ":", ";", "/", "\\",
@@ -154,8 +154,8 @@ async def on_message(message):
     # Only react to other messages if they are sent in counting channel
     if message.channel.id == int(os.getenv("CHANNEL_ID")):
         # List of possible reactions
-        emoji_list = ["<:sadpainvacher:957774085725753395>",      # 0, incorrect
-                      "<:doggo:957305556555681842>",              # 1, correct
+        emoji_list = ["<:doggo:957305556555681842>",              # 0, incorrect
+                      "<:seed:958270306609410088>",               # 1, correct
                       "<:mitangywangy:957115698650415144>",       # 2, 69
                       "<:duck_knife:957429922312368128>",         # 3, every 10 under 100
                       "<a:rgbCat:957429181145288765>"             # 4, every 100 under 1000
