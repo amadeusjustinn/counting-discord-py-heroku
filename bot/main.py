@@ -280,7 +280,7 @@ async def on_message(message):
                     embed_m = discord.Embed(colour=0xFFFFFF)
                     embed_m.add_field(
                         name="<a:ayellowhart:957115698327482428> Wrong count <a:ayellowhart:957115698327482428>",
-                        value=f"uh oh looks like you messed up the sequence. the next number is 1. <:fduckkill:957429922312368128>")
+                        value=f"uh oh looks like you messed up the sequence. the next number is 1. <:dhrknife:959494964943912990>")
                     embed_m.set_thumbnail(url="")
                     await message.channel.send(embed=embed_m)              
                 
