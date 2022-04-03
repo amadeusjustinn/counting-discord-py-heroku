@@ -173,7 +173,7 @@ async def on_message(message):
                     "*", "(", ")", "<", ">", "?", "{", "}", "[", "]", "\"", "'", "|", "_", "="]
 
         # See stats using tailwhip!user <@user>; user parameter is optional
-        if message.content.startswith('tailwhip!user'):
+        if message.content.startswith('!countstats'):
             # Determine whose stats to analyse
             u_id = ""
             msg_arr = message.content.split()
