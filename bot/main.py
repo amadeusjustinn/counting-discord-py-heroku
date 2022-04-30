@@ -162,7 +162,7 @@ async def on_message(message):
     if message.channel.id == int(os.getenv("CHANNEL_ID")):
         # List of possible reactions
         emoji_list = ["<:dhemotekgsworried:959490259631095848>",        # 0, incorrect
-                      "<:dhemotekgsflush:959490259501088859>",          # 1, correct
+                      "<:dhrflower:959494929262968903>, <a:dhrkirby:961019164242370652>",          # 1, correct
                       "<:dhemotekgshmm:959490259689832468>",            # 2, 69
                       "<a:dhhartlemon:957115698327482428>",             # 3, every 10 under 100
                       "<a:dhhartorange:957115698415542322>"             # 4, every 100 under 1000
