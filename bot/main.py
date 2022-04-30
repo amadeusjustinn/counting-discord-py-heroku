@@ -161,9 +161,9 @@ async def on_message(message):
     # Only react to other messages if they are sent in counting channel
     if message.channel.id == int(os.getenv("CHANNEL_ID")):
         # List of possible reactions
-        emoji_list = ["<:dhemotekgsworried:959490259631095848>",        # 0, incorrect
-                      "<:dhrflower:959494929262968903>, <a:dhrkirby:961019164242370652>",          # 1, correct
-                      "<:dhemotekgshmm:959490259689832468>",            # 2, 69
+        emoji_list = ["<a:dhrkirby:961019164242370652>",                # 0, incorrect
+                      "<:dhrflower:959494929262968903>",                # 1, correct
+                      "<a:dhemotekgsspinny:959488901284778104>",        # 2, 69
                       "<a:dhhartlemon:957115698327482428>",             # 3, every 10 under 100
                       "<a:dhhartorange:957115698415542322>"             # 4, every 100 under 1000
                       ]
@@ -232,7 +232,7 @@ async def on_message(message):
                 stats_arr = [ct_str, cc_str, ca_str]
 
             embed_m.add_field(
-                name=" <a:ayellowhart:957115698327482428> Counting stats",
+                name=" <a:dhrkirby:961019164242370652> Counting stats <a:dhrkirby:961019164242370652>",
                 value="\n".join(stats_arr))
 
             await message.channel.send(embed=embed_m)
@@ -279,9 +279,9 @@ async def on_message(message):
 
                     embed_m = discord.Embed(colour=0xFFFFFF)
                     embed_m.add_field(
-                        name="<a:ayellowhart:957115698327482428> Wrong count <a:ayellowhart:957115698327482428>",
-                        value=f"uh oh looks like you messed up the sequence. the next number is 1. <:dhrknife:959494964943912990>")
-                    embed_m.set_thumbnail(url="")
+                        name="<a:no:970092028530679859> Wrong count <a:no:970092028530679859>",
+                        value=f"")
+                    embed_m.set_image(url="https://i.pinimg.com/originals/57/2b/b2/572bb225ec396f785397d53cde71d732.gif")
                     await message.channel.send(embed=embed_m)              
                 
     # Update JSON file
