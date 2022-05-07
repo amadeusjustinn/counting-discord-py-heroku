@@ -61,7 +61,7 @@ async def on_ready():
 
     # Access JSON file for updating last count
     filename = os.path.dirname(os.path.realpath(__file__)) + '/data.json'
-    with open(filename, "r") as file1:
+    with open(filename, "r", encoding="utf-8") as file1:
         data = json.load(file1)
 
     # Get counting channel history
@@ -70,7 +70,7 @@ async def on_ready():
 
     # Create flag to avoid checking every message in the channel, only the last valid one
     checked_flag = False
-    
+
     # Name of last count and last counter
     result_g = 0
     last_counter = "None"
@@ -109,7 +109,7 @@ async def on_ready():
                         else:
                             data["curr_count"] = result
                             data["last_user"] = msg.author.id
-                            
+
                             result_g = result
                             last_counter = msg.author.name
 
@@ -118,21 +118,21 @@ async def on_ready():
     print(f"{result_g} by {last_counter}")
 
     # Update JSON file
-    with open(filename, "w") as file2:
+    with open(filename, "w", encoding="utf-8") as file2:
         json.dump(data, file2, indent=4)
 
     # Change bot status
     await client.change_presence(status=discord.Status.idle, activity=discord.Activity(type=discord.ActivityType.listening, name="Tailwhip"))
-                                 
+
     # Confirmation message
     print('Logged in')
-    
-    mit = client.get_guild(748634368037355524)
+
+    """ mit = client.get_guild(748634368037355524)
     try:
         await mit.leave()
         print("Left MIT hehe")
-    except HTTPException:
-        print("No leave")
+    except Exception:
+        print("No leave") """
 
     return
 
@@ -155,7 +155,7 @@ async def on_message(message):
 
     # Access JSON file for counting checked and verified sentences
     filename = os.path.dirname(os.path.realpath(__file__)) + '/data.json'
-    with open(filename, "r") as file1:
+    with open(filename, "r", encoding="utf-8") as file1:
         data = json.load(file1)
 
     # Only react to other messages if they are sent in counting channel
@@ -258,7 +258,7 @@ async def on_message(message):
                     data["last_user"] = message.author.id
                     data["curr_count"] = result[0]
                     emoji = emoji_list[1]
-                    
+
                     # Select appropriate emoji
                     if data["curr_count"] == 69:
                         emoji = emoji_list[2]
@@ -268,7 +268,7 @@ async def on_message(message):
                         emoji = emoji_list[4]
 
                     await message.add_reaction(emoji)
-                
+
                 else:
                     # Send "incorrect" emoji
                     await message.add_reaction(emoji_list[0])
@@ -281,11 +281,12 @@ async def on_message(message):
                     embed_m.add_field(
                         name="<a:no:970092028530679859> Wrong count <a:no:970092028530679859>",
                         value=f"")
-                    embed_m.set_image(url="https://i.pinimg.com/originals/57/2b/b2/572bb225ec396f785397d53cde71d732.gif")
-                    await message.channel.send(embed=embed_m)              
-                
+                    embed_m.set_image(
+                        url="https://i.pinimg.com/originals/57/2b/b2/572bb225ec396f785397d53cde71d732.gif")
+                    await message.channel.send(embed=embed_m)
+
     # Update JSON file
-    with open(filename, "w") as file2:
+    with open(filename, "w", encoding="utf-8") as file2:
         json.dump(data, file2, indent=4)
 
     return
