@@ -277,10 +277,8 @@ async def on_message(message):
                     data["curr_count"] = 0
                     data["last_user"] = 0
 
-                    embed_m = discord.Embed(colour=0xFFFFFF)
-                    embed_m.add_field(
-                        name="<a:no:970092028530679859> Wrong count <a:no:970092028530679859>",
-                        value="\t")
+                    embed_m = discord.Embed(
+                        colour=0xFFFFFF, title="<a:no:970092028530679859> Wrong count <a:no:970092028530679859>")
                     embed_m.set_image(
                         url="https://i.pinimg.com/originals/57/2b/b2/572bb225ec396f785397d53cde71d732.gif")
                     await message.channel.send(embed=embed_m)
