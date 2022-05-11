@@ -232,7 +232,7 @@ async def on_message(message):
                 stats_arr = [ct_str, cc_str, ca_str]
 
             embed_m.add_field(
-                name=" <a:dhrkirby:961019164242370652> Counting stats <a:dhrkirby:961019164242370652>",
+                name="<a:dhrkirby:961019164242370652> Counting stats <a:dhrkirby:961019164242370652>",
                 value="\n".join(stats_arr))
 
             await message.channel.send(embed=embed_m)
@@ -280,7 +280,7 @@ async def on_message(message):
                     embed_m = discord.Embed(colour=0xFFFFFF)
                     embed_m.add_field(
                         name="<a:no:970092028530679859> Wrong count <a:no:970092028530679859>",
-                        value=f"")
+                        value="\t")
                     embed_m.set_image(
                         url="https://i.pinimg.com/originals/57/2b/b2/572bb225ec396f785397d53cde71d732.gif")
                     await message.channel.send(embed=embed_m)
