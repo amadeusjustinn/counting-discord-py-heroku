@@ -53,7 +53,7 @@ async def on_ready():
     Checks last valid count (due to bot cycling). Confirms that the bot is ready to use.
     """
 
-    incorrect_emoji = "<:dhemotekgsworried:959490259631095848>"
+    incorrect_emoji = "<a:dhrkirby:961019164242370652>"
 
     # List of forbidden start/end characters
     char_arr = ["~", "`", ".", ",", "!", "@", "#", "$", "%", "^", "&", ":", ";", "/", "\\",
@@ -161,8 +161,8 @@ async def on_message(message):
     # Only react to other messages if they are sent in counting channel
     if message.channel.id == int(os.getenv("CHANNEL_ID")):
         # List of possible reactions
-        emoji_list = ["<a:dhrkirby:961019164242370652>",                # 0, incorrect
-                      "<:dhrflower:959494929262968903>",                # 1, correct
+        emoji_list = ["<:dhrangy:961049662045974568>",                  # 0, incorrect
+                      "<a:dhrkirby:961019164242370652>",                # 1, correct
                       "<a:dhemotekgsspinny:959488901284778104>",        # 2, 69
                       "<a:dhhartlemon:957115698327482428>",             # 3, every 10 under 100
                       "<a:dhhartorange:957115698415542322>"             # 4, every 100 under 1000
