@@ -3,6 +3,9 @@ import os
 import discord
 
 
+incorrect_emoji = "<:circuitredheart:984392507515363338>"
+
+
 def evaluate(exp, curr_count):
     """
     Safely evaluates the mathematical expression in the message.
@@ -53,7 +56,7 @@ async def on_ready():
     Checks last valid count (due to bot cycling). Confirms that the bot is ready to use.
     """
 
-    incorrect_emoji = "<:dhrangy:961049662045974568>"
+    global incorrect_emoji
 
     # List of forbidden start/end characters
     char_arr = ["~", "`", ".", ",", "!", "@", "#", "$", "%", "^", "&", ":", ";", "/", "\\",
@@ -149,6 +152,8 @@ async def on_message(message):
         Newest message
     """
 
+    global incorrect_emoji
+    
     # Don't check message if written by self
     if message.author == client.user:
         return
@@ -161,7 +166,7 @@ async def on_message(message):
     # Only react to other messages if they are sent in counting channel
     if message.channel.id == int(os.getenv("CHANNEL_ID")):
         # List of possible reactions
-        emoji_list = ["<:circuitredheart:984392507515363338>",                  # 0, incorrect
+        emoji_list = [incorrect_emoji,                                          # 0, incorrect
                       "<:circuitgreenheart:984392506013806632>",                # 1, correct
                       "<:dhrblush:959494939182497812>",                         # 2, 69
                       "<:circuitblueheart:984392508333248523>",                 # 3, every 10 under 100
