@@ -283,7 +283,7 @@ async def on_message(message):
                     data["last_user"] = 0
 
                     embed_m = discord.Embed(
-                        colour=0xFFFFFF, title="Wrong Count/n/nPlease proceed with the number; 1.")
+                        colour=0xFFFFFF, title="Wrong Count\n\nPlease proceed with the number; 1.")
                     embed_m.set_image(
                         url="https://media.discordapp.net/attachments/984628727021461504/984687150882783272/0013714421_10-removebg-preview.png")
                     await message.channel.send(embed=embed_m)
