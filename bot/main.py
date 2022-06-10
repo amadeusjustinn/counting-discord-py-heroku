@@ -283,9 +283,9 @@ async def on_message(message):
                     data["last_user"] = 0
 
                     embed_m = discord.Embed(
-                        colour=0xFFFFFF, title="<a:no:970092028530679859> Wrong count <a:no:970092028530679859>")
+                        colour=0xFFFFFF, title="Wrong Count/n/nPlease proceed with the number; 1.")
                     embed_m.set_image(
-                        url="https://i.pinimg.com/originals/57/2b/b2/572bb225ec396f785397d53cde71d732.gif")
+                        url="https://media.discordapp.net/attachments/984628727021461504/984687150882783272/0013714421_10-removebg-preview.png")
                     await message.channel.send(embed=embed_m)
 
     # Update JSON file
