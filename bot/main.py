@@ -1,7 +1,7 @@
 import json
 import os
 import discord
-incorrect_emoji = "<:circuitredheart:984392507515363338>"
+incorrect_emoji = "<:circuit2:987558719283945562>"
 def evaluate(exp, curr_count):
     """
     Safely evaluates the mathematical expression in the message.
