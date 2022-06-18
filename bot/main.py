@@ -120,10 +120,6 @@ async def on_ready():
 
     print(f"{result_g} by {last_counter}")
 
-    # Update JSON file
-    with open(filename, "w", encoding="utf-8") as file2:
-        json.dump(data, file2, indent=4)
-
     # Change bot status
     await client.change_presence(status=discord.Status.idle, activity=discord.Activity(type=discord.ActivityType.listening, name="Tailwhip"))
 
@@ -287,10 +283,6 @@ async def on_message(message):
                     embed_m.set_image(
                         url="https://media.discordapp.net/attachments/984628727021461504/984687150882783272/0013714421_10-removebg-preview.png")
                     await message.channel.send(embed=embed_m)
-
-    # Update JSON file
-    with open(filename, "w", encoding="utf-8") as file2:
-        json.dump(data, file2, indent=4)
 
     return
 
