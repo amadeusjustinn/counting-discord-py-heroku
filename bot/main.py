@@ -1,7 +1,7 @@
 import json
 import os
 import discord
-incorrect_emoji = "<:circuit2:987558719283945562>"
+incorrect_emoji = "<:circuitredheart:984392507515363338>"
 def evaluate(exp, curr_count):
     """
     Safely evaluates the mathematical expression in the message.
@@ -45,7 +45,7 @@ async def on_ready():
     with open(filename, "r", encoding="utf-8") as file1:
         data = json.load(file1)
     # Get counting channel history
-    c_id = int(os.getenv(987556813069234250))
+    c_id = int(os.getenv("CHANNEL_ID"))
     channel_hist = await client.get_channel(c_id).history(limit=float("inf")).flatten()
     # Create flag to avoid checking every message in the channel, only the last valid one
     checked_flag = False
