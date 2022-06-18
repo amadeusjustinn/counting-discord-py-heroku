@@ -45,7 +45,7 @@ async def on_ready():
     with open(filename, "r", encoding="utf-8") as file1:
         data = json.load(file1)
     # Get counting channel history
-    c_id = int(os.getenv("CHANNEL_ID"))
+    c_id = int(os.getenv(987556813069234250))
     channel_hist = await client.get_channel(c_id).history(limit=float("inf")).flatten()
     # Create flag to avoid checking every message in the channel, only the last valid one
     checked_flag = False
